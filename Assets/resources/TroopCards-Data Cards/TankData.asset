@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6964888e81cb648aa6ef0d0af27d56, type: 3}
+  m_Name: TankData
+  m_EditorClassIdentifier: Assembly-CSharp::UnitData
+  unitName: Tank
+  prefab: {fileID: 22129563456437929, guid: 95b7878d59cb7664b847406a805e12ba, type: 3}
+  cost: 7
+  icon: {fileID: 21300000, guid: 4f2fed7814aa5354599f70c9dc38a589, type: 3}
+  description: 

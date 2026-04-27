@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6964888e81cb648aa6ef0d0af27d56, type: 3}
+  m_Name: Demon-Wolf
+  m_EditorClassIdentifier: Assembly-CSharp::UnitData
+  unitName: DemonWolf
+  prefab: {fileID: 2496972361553304836, guid: 2486deb734f3ada4097b7b8f7e1c2d2e, type: 3}
+  cost: 3
+  icon: {fileID: 21300000, guid: 97f5eb78033ac864189f5520c734deca, type: 3}
+  description: 'Demon Knight
+
+    Weapon :: Hammer
+
+    Action :: Attacks Castle
+    ONLY'
