@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6964888e81cb648aa6ef0d0af27d56, type: 3}
+  m_Name: Castle Guard
+  m_EditorClassIdentifier: Assembly-CSharp::UnitData
+  unitName: Castle Guard
+  prefab: {fileID: 1894600189854802560, guid: 0a067482d484c1444a322f64ed459a6d, type: 3}
+  cost: 4
+  icon: {fileID: 21300000, guid: a699495e887a167499fc35c2e3df4258, type: 3}
+  description: 

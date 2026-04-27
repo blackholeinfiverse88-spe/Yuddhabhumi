@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6964888e81cb648aa6ef0d0af27d56, type: 3}
+  m_Name: Kavach-Bhedi
+  m_EditorClassIdentifier: Assembly-CSharp::UnitData
+  unitName: Kavach Bhedi
+  prefab: {fileID: 6296452454113604521, guid: 917ef07cc31ca64409c2039bff08af36, type: 3}
+  cost: 3
+  icon: {fileID: 21300000, guid: a699495e887a167499fc35c2e3df4258, type: 3}
+  description: 
