@@ -15,6 +15,14 @@ public class PlayerTroopSpawnerVR : MonoBehaviour
 
     public void SpawnUnit(UnitData unit)
     {
+        // SAARTHI ENFORCEMENT (MANDATORY)
+        // If SpawnUnit is called directly (bypassing TantraExecutionNode), block it.
+        if (!SaarthiExecutionContext.IsAuthorized)
+        {
+            Debug.LogError("[SAARTHI_BLOCK] SpawnUnit blocked: no execution token context (bypass attempt).");
+            return;
+        }
+
         if (unit == null)
             return;
 
