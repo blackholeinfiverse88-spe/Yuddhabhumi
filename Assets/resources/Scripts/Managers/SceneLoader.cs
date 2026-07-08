@@ -15,6 +15,20 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void LoadPreviousScene()
+{
+    int previousScene = SceneManager.GetActiveScene().buildIndex - 1;
+
+    if (previousScene >= 0)
+    {
+        SceneManager.LoadScene(previousScene);
+    }
+    else
+    {
+        Debug.Log("No previous scene exists.");
+    }
+}
+
     // Quit the game / exit application
     public void QuitGame()
     {

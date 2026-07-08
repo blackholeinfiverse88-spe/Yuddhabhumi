@@ -16,6 +16,10 @@ public class DeckBuilderManager : MonoBehaviour
     public Button startBattleButton;
     public TextMeshProUGUI statusText;
 
+    // --- NEW: Add a reference to your Showcase Manager ---
+    [Header("Showcase Reference")]
+    public DeckShowcaseManager showcaseManager; 
+
     private List<UnitData> currentDeck = new List<UnitData>();
 
     private void Start()
@@ -52,6 +56,12 @@ public class DeckBuilderManager : MonoBehaviour
     public void OnCardClicked(UnitData unit)
     {
         if (unit == null) return;
+
+        // --- NEW: Tell the Showcase Manager to display this specific unit! ---
+        if (showcaseManager != null)
+        {
+            showcaseManager.DisplayCharacter(unit);
+        }
 
         if (currentDeck.Contains(unit))
         {

@@ -9,9 +9,6 @@ public class BattleUIManager : MonoBehaviour
     public PlayerTroopSpawnerVR spawner;
     public PlayerEnergySystem energySystem;
 
-    [Header("Tantra (Governed Execution Node)")]
-    public TantraExecutionNode tantraNode; // assign in Inspector
-
     [Header("Deck UI Buttons (3 Hand Slots)")]
     public Button cardButton1;
     public Button cardButton2;
@@ -29,7 +26,7 @@ public class BattleUIManager : MonoBehaviour
     private Queue<UnitData> cycleQueue = new Queue<UnitData>();
     private Button[] cardButtons;
 
-    private List<UnitData> runtimeDeck = new List<UnitData>(); // store shuffled deck
+    private List<UnitData> runtimeDeck = new List<UnitData>();
 
     private void Start()
     {
@@ -58,7 +55,6 @@ public class BattleUIManager : MonoBehaviour
 
         cycleQueue.Clear();
 
-        // Fill hand
         handSlots[0] = runtimeDeck[0];
         handSlots[1] = runtimeDeck[1];
         handSlots[2] = runtimeDeck[2];
@@ -92,28 +88,36 @@ public class BattleUIManager : MonoBehaviour
         if (usedCard == null)
             return;
 
-        if (energySystem != null && energySystem.currentEnergy < usedCard.cost)
+        if (spawner == null)
             return;
 
-        // ----------------------------
-        // GOVERNED EXECUTION:
-        // No direct SpawnUnit call here.
-        // Input -> packet -> validation -> token -> execution
-        // ----------------------------
-        if (tantraNode == null)
-        {
-            Debug.LogError("[TANTRA] TantraExecutionNode not assigned. Blocking deploy.");
+        // authoritative energy system
+        PlayerEnergySystem es = energySystem != null ? energySystem : spawner.energySystem;
+
+        if (es != null && es.currentEnergy < usedCard.cost)
             return;
+
+        float energyBefore = es != null ? es.currentEnergy : 0f;
+        float maxEnergy = es != null ? es.maxEnergy : 10f;
+
+        // Gameplay execution unchanged
+        spawner.SpawnUnit(usedCard);
+
+        float energyAfter = es != null ? es.currentEnergy : energyBefore;
+        bool spent = energyAfter < (energyBefore - 0.0001f);
+
+        if (spent)
+        {
+            float dmgTotal = (GameFlowManager.Instance != null) ? GameFlowManager.Instance.totalDamageDealt : 0f;
+
+            if (BehaviorTraceRecorder.Instance != null)
+                BehaviorTraceRecorder.Instance.RecordSuccessfulDeploy(usedCard, energyBefore, energyAfter, maxEnergy, dmgTotal);
+
+            if (KarmaStateTracker.Instance != null)
+                KarmaStateTracker.Instance.TriggerDerivation();
         }
 
-        var outcome = tantraNode.SubmitDeploy(slotIndex, usedCard);
-        if (outcome.status == ExecutionStatus.Blocked)
-        {
-            // Reject means: no execution -> do not rotate deck / do not animate / do not change preview.
-            return;
-        }
-
-        // ✅ Rotate queue ONLY if execution happened
+        // Deck rotation + animation unchanged
         cycleQueue.Enqueue(usedCard);
 
         UnitData cardFromPreview = nextCard;
@@ -123,10 +127,8 @@ public class BattleUIManager : MonoBehaviour
         else
             nextCard = null;
 
-        // ✅ Play flip animation
         StartCoroutine(FlipAndPop(slotIndex, cardFromPreview));
 
-        // Update preview separately
         UpdateNextCardVisual();
         StartCoroutine(FadePreview());
     }
@@ -231,7 +233,6 @@ public class BattleUIManager : MonoBehaviour
 
         float time = 0f;
 
-        // Flip collapse (X -> 0)
         while (time < flipDuration)
         {
             time += Time.deltaTime;
@@ -240,13 +241,11 @@ public class BattleUIManager : MonoBehaviour
             yield return null;
         }
 
-        // Swap card at mid-flip
         handSlots[slotIndex] = newCardData;
         UpdateButtonVisuals(cardButtons[slotIndex], newCardData);
 
         time = 0f;
 
-        // Flip expand (0 -> 1)
         while (time < flipDuration)
         {
             time += Time.deltaTime;
@@ -255,7 +254,6 @@ public class BattleUIManager : MonoBehaviour
             yield return null;
         }
 
-        // POP overshoot
         time = 0f;
         while (time < popDuration)
         {
