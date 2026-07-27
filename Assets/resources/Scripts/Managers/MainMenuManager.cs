@@ -16,6 +16,7 @@ public class MainMenuManager : MonoBehaviour
             if(levelText) levelText.text = "Lvl " + UserProfile.Instance.currentLevel;
             if(statsText) statsText.text = $"Wins: {UserProfile.Instance.wins}";
         }
+        Application.targetFrameRate=72;
     }
 
     // Connect this to your PLAY Button

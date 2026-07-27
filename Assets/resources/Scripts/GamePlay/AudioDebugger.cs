@@ -5,12 +5,7 @@ public class AudioDebugger : MonoBehaviour
     void Update()
     {
         // Press keys to test sounds
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Debug.Log("Testing: Hover Sound");
-            if (AudioManager.Instance) AudioManager.Instance.PlayHover();
-            else Debug.LogError("NO AUDIO MANAGER FOUND!");
-        }
+        
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {

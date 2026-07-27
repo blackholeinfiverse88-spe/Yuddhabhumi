@@ -35,6 +35,7 @@ public class DeckBuilderManager : MonoBehaviour
         SelectedDeck.ClearDeck();
         PopulateLibrary();
         UpdateUI();
+        Application.targetFrameRate=72;
     }
 
     void PopulateLibrary()

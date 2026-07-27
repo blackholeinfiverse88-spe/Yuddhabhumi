@@ -23,6 +23,7 @@ public class TutorialUIManager : MonoBehaviour
     private void Start()
     {
         SetupTutorialDeckUI();
+        Application.targetFrameRate=90;
     }
 
     void SetupTutorialDeckUI()

@@ -28,6 +28,11 @@ public class SceneLoader : MonoBehaviour
         Debug.Log("No previous scene exists.");
     }
 }
+ 
+    public void LoadBootScene()
+{
+    UnityEngine.SceneManagement.SceneManager.LoadScene("Boot");
+}
 
     // Quit the game / exit application
     public void QuitGame()

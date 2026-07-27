@@ -58,6 +58,7 @@ public class GameManagerVR : MonoBehaviour
         {
             Debug.LogError("GameManagerVR: BaseHealth references missing!");
         }
+        Application.targetFrameRate=72;
     }
 
     private void Update()

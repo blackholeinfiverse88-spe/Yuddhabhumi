@@ -32,7 +32,7 @@ public class VRButtonFeedback : MonoBehaviour, IPointerEnterHandler, IPointerExi
         if (btn != null && !btn.interactable) return; // Ignore if disabled
 
         targetScale = originalScale * hoverScale; // Scale Up
-        AudioManager.Instance?.PlayHover(); // Play Sound
+        //AudioManager.Instance?.PlayHover(); // Play Sound
     }
 
     public void OnPointerExit(PointerEventData eventData)
