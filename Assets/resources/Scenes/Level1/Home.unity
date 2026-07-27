@@ -3941,27 +3941,14 @@ GameObject:
   m_Component:
   - component: {fileID: 934659695}
   - component: {fileID: 934659694}
-  - component: {fileID: 934659693}
+  - component: {fileID: 934659696}
   m_Layer: 0
-  m_Name: SceneMusicTrigger
+  m_Name: SceneMusicChanger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &934659693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 934659692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a458cef4b948ef448365318333bf125, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SimpleSceneMusic
-  backgroundMusic: {fileID: 0}
 --- !u!82 &934659694
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3973,9 +3960,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: ef181e7de01ff3e4fba72284119d590d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.096
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4074,6 +4061,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &934659696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934659692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da2ab11444b5c14a92602537b40935c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneMusicChanger
 --- !u!1 &984313000
 GameObject:
   m_ObjectHideFlags: 0

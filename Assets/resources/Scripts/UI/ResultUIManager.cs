@@ -20,6 +20,14 @@ public class ResultUIManager : MonoBehaviour
 
         bool won = GameFlowManager.Instance.lastMatchWon;
 
+        if (AudioManager.Instance != null)
+        {
+           if (won)
+               AudioManager.Instance.PlayVictory();
+           else
+               AudioManager.Instance.PlayDefeat();
+        }
+
         // Win / Loss
         if (resultText != null)
             resultText.text = won ? "WIN!" : "LOSE!";

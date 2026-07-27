@@ -2137,6 +2137,7 @@ GameObject:
   - component: {fileID: 1100683932}
   - component: {fileID: 1100683931}
   - component: {fileID: 1100683930}
+  - component: {fileID: 1100683933}
   m_Layer: 5
   m_Name: PlayAgain-Btn
   m_TagString: Untagged
@@ -2258,6 +2259,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100683928}
   m_CullTransparentMesh: 1
+--- !u!114 &1100683933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100683928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 339819b6f525a384f8fa999e2dcba7c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonFeedback
+  hoverScale: 1.1
+  clickScale: 0.95
+  animationSpeed: 10
 --- !u!1001 &1111515735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2332,6 +2348,7 @@ GameObject:
   - component: {fileID: 1134413596}
   - component: {fileID: 1134413595}
   - component: {fileID: 1134413594}
+  - component: {fileID: 1134413597}
   m_Layer: 5
   m_Name: Exit-Btn
   m_TagString: Untagged
@@ -2453,6 +2470,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134413592}
   m_CullTransparentMesh: 1
+--- !u!114 &1134413597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134413592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 339819b6f525a384f8fa999e2dcba7c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonFeedback
+  hoverScale: 1.1
+  clickScale: 0.95
+  animationSpeed: 10
 --- !u!1 &1153613210
 GameObject:
   m_ObjectHideFlags: 0
@@ -3296,6 +3328,7 @@ GameObject:
   - component: {fileID: 1410310680}
   - component: {fileID: 1410310679}
   - component: {fileID: 1410310678}
+  - component: {fileID: 1410310681}
   m_Layer: 5
   m_Name: NextLevel-Btn
   m_TagString: Untagged
@@ -3417,6 +3450,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410310676}
   m_CullTransparentMesh: 1
+--- !u!114 &1410310681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410310676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 339819b6f525a384f8fa999e2dcba7c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonFeedback
+  hoverScale: 1.1
+  clickScale: 0.95
+  animationSpeed: 10
 --- !u!1 &1464127685
 GameObject:
   m_ObjectHideFlags: 0
