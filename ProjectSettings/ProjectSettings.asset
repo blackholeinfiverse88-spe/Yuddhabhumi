@@ -149,8 +149,6 @@ PlayerSettings:
   preloadedAssets:
   - {fileID: 11400000, guid: b89b7c864e546204a8d29c692b930278, type: 2}
   - {fileID: -944628639613478452, guid: 7fb6c1c790fa04865b379a6e8ccd7e9c, type: 3}
-  - {fileID: -8993053726226503459, guid: 0a39b94304ed37041a7aaec38b371b22, type: 2}
-  - {fileID: -2641523631770352346, guid: 64596fd85afd63e44878ee71a882262f, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -581,6 +579,9 @@ PlayerSettings:
   - serializedVersion: 3
     m_BuildTarget: Android
     m_Formats: 03000000
+  - serializedVersion: 3
+    m_BuildTarget: WebGL
+    m_Formats: 05000000
   playModeTestRunnerEnabled: 0
   runPlayModeTestAsEditModeTest: 0
   actionOnDotNetUnhandledException: 1

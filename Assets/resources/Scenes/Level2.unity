@@ -12389,7 +12389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1898144863}
-  - component: {fileID: 1898144862}
+  - component: {fileID: 1898144864}
   m_Layer: 0
   m_Name: SceneMusicTrigger
   m_TagString: Untagged
@@ -12397,19 +12397,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1898144862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1898144861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a458cef4b948ef448365318333bf125, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneMusicTrigger
-  sceneMusicTrack: {fileID: 8300000, guid: de251335e1d7645369bab5cd9afb5834, type: 3}
 --- !u!4 &1898144863
 Transform:
   m_ObjectHideFlags: 0
@@ -12425,6 +12412,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1898144864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898144861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0da97a85ada107440abfcafb685f4af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSceneData
+  sceneMusic: {fileID: 8300000, guid: beb5754aa5e2bf546899ef61a117666d, type: 3}
 --- !u!1 &1899393845
 GameObject:
   m_ObjectHideFlags: 0

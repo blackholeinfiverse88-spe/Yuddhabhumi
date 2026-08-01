@@ -466,10 +466,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   musicSource: {fileID: 1212094936943620807}
   sfxSource: {fileID: 8403181802849567624}
+  sceneGameplayMusic: {fileID: 0}
   clickSound: {fileID: 8300000, guid: 1473676dddb8f564b88a0541fe2d5fef, type: 3}
   battleStartSound: {fileID: 8300000, guid: beb5754aa5e2bf546899ef61a117666d, type: 3}
   victorySound: {fileID: 8300000, guid: 58a34e7a58837b344997827887a7c59e, type: 3}
-  defeatSound: {fileID: 8300000, guid: f3b2a202b2189f8438eeb7a7fda3271f, type: 3}
+  defeatSound: {fileID: 0}
 --- !u!4 &1478903956
 Transform:
   m_ObjectHideFlags: 0

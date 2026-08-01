@@ -1,17 +1,13 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
-    // Local reference for scripts inside the SAME scene to easily call AudioManager.Instance
-    public static AudioManager Instance;
+    public static AudioManager Instance { get; private set; }
 
     [Header("Audio Sources")]
     public AudioSource musicSource;
     public AudioSource sfxSource;
-
-    [Header("Background Music for THIS Scene")]
-    [Tooltip("Drag the specific BGM asset for this level here.")]
-    public AudioClip sceneGameplayMusic;
 
     [Header("UI Sounds")]
     public AudioClip clickSound;
@@ -21,71 +17,97 @@ public class AudioManager : MonoBehaviour
     public AudioClip victorySound;
     public AudioClip defeatSound;
 
-    void Awake()
+    private void Awake()
     {
-        // ====== ADD THESE TWO LINES FOR TESTING ======
-    PlayerPrefs.DeleteAll();
-    PlayerPrefs.Save();
-    Debug.Log("--- PLAYER PREFS CLEARED FOR TESTING ---");
-    // =============================================
- 
-    // If an Instance already exists and it's not this one, destroy this duplicate
-    if (Instance != null && Instance != this)
-    {
-        Destroy(gameObject);
-        return;
-    }
-
-    // Set the persistent instance
-    Instance = this;
-    
-    // Crucial: Keep this GameObject alive when loading new scenes!
-    DontDestroyOnLoad(gameObject);
-
-    }
-
-    void Start()
-    {
-        // 1. Unmute Unity's global master volume
-        AudioListener.volume = 1f;
-
-        // 2. Play this scene's specific music immediately if assigned
-        if (musicSource != null && sceneGameplayMusic != null)
+        // 1. Check duplicate BEFORE doing any setup
+        if (Instance != null && Instance != this)
         {
-            musicSource.clip = sceneGameplayMusic;
-            musicSource.loop = true;
-            musicSource.volume = 1f;
-            
-            // Crucial VR Fix: Force to 2D so it follows the player headset perfectly
-            musicSource.spatialBlend = 0f; 
-            
-            musicSource.Play();
-            Debug.Log("[AUDIO] Playing scene music: " + sceneGameplayMusic.name);
+            // CRITICAL FIX: Disable component first so OnDisable / OnEnable 
+            // unsubscribes aren't executed in a way that breaks the singleton
+            enabled = false; 
+            Destroy(gameObject);
+            return;
+        }
+
+        // 2. Assign Singleton & Persist
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        // 3. Ensure sources are forced 2D for VR Headset
+        if (musicSource != null) musicSource.spatialBlend = 0f;
+        if (sfxSource != null) sfxSource.spatialBlend = 0f;
+    }
+
+    private void OnEnable()
+    {
+        // Only register event if this is the active singleton instance
+        if (Instance == null || Instance == this)
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
     }
 
-    //======================
-    // UI SOUNDS FUNCTIONS
-    //======================
+    private void OnDisable()
+    {
+        // Only unregister if this instance is the actual active singleton
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Global VR Unpause Fix
+        AudioListener.pause = false;
+        AudioListener.volume = 1f;
+
+        // Find the AudioSceneData helper (if present in the newly loaded scene)
+        AudioSceneData sceneData = FindFirstObjectByType<AudioSceneData>();
+        if (sceneData != null && sceneData.sceneMusic != null)
+        {
+            PlayMusic(sceneData.sceneMusic);
+        }
+        else
+        {
+            // If music was paused/stopped by Unity during scene unload, force resume it
+            if (musicSource != null && !musicSource.isPlaying && musicSource.clip != null)
+            {
+                musicSource.UnPause();
+                musicSource.Play();
+            }
+        }
+    }
+
+    public void PlayMusic(AudioClip clip)
+    {
+        if (musicSource == null || clip == null) return;
+
+        // Don't restart if the exact same music track is already playing
+        if (musicSource.clip == clip && musicSource.isPlaying) return;
+
+        musicSource.clip = clip;
+        musicSource.loop = true;
+        musicSource.spatialBlend = 0f; // Force 2D
+        musicSource.Play();
+    }
+
+    // ==========================================
+    // UI & SFX FUNCTIONS
+    // ==========================================
 
     public void PlayClick()
     {
         if (clickSound != null && sfxSource != null)
         {
-            sfxSource.spatialBlend = 0f; // Force to 2D for VR
             sfxSource.PlayOneShot(clickSound);
         }
     }
-
-    //======================
-    // GAMEPLAY SOUNDS FUNCTIONS
-    //======================
 
     public void PlayBattleStart()
     {
         if (battleStartSound != null && sfxSource != null)
         {
-            sfxSource.spatialBlend = 0f;
             sfxSource.PlayOneShot(battleStartSound);
         }
     }
@@ -94,7 +116,6 @@ public class AudioManager : MonoBehaviour
     {
         if (victorySound != null && sfxSource != null)
         {
-            sfxSource.spatialBlend = 0f;
             sfxSource.PlayOneShot(victorySound);
         }
     }
@@ -103,10 +124,7 @@ public class AudioManager : MonoBehaviour
     {
         if (defeatSound != null && sfxSource != null)
         {
-            sfxSource.spatialBlend = 0f;
             sfxSource.PlayOneShot(defeatSound);
         }
     }
-
-    
 }
